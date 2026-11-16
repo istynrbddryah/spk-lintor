@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SPK LINTOR{% endblock %} · Kantor Pertanahan Kabupaten Indramayu</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="{{ url_for('dashboard') }}">
+      <div class="brand-mark">BPN</div><div><strong>SPK LINTOR</strong><span>Kantah Kabupaten Indramayu</span></div>
+    </a>
+    <div class="side-label">MENU UTAMA</div>
+    <nav class="nav-menu">
+      <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}"><span class="nav-icon">▦</span> Dashboard</a>
+      <a class="nav-link {% if request.endpoint == 'upload' %}active{% endif %}" href="{{ url_for('upload') }}"><span class="nav-icon">⇧</span> Impor Data</a>
+      <a class="nav-link {% if request.endpoint == 'data_page' %}active{% endif %}" href="{{ url_for('data_page') }}"><span class="nav-icon">▤</span> Data Progres</a>
+      <a class="nav-link {% if request.endpoint == 'priorities' %}active{% endif %}" href="{{ url_for('priorities') }}"><span class="nav-icon">◎</span> Prioritas Monitoring</a>
+    </nav>
+    <div class="side-label side-label-spaced">INFORMASI</div>
+    <nav class="nav-menu"><a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}"><span class="nav-icon">ⓘ</span> Tentang Sistem</a></nav>
+    <div class="sidebar-account"><div class="account-avatar">{{ (session.get('username', 'U')[:1] or 'U')|upper }}</div><div class="account-info"><b>{{ session.get('username', 'Pengguna') }}</b><span>Sesi masuk aktif</span></div><form method="post" action="{{ url_for('logout') }}"><button class="logout-button" type="submit" title="Keluar" aria-label="Keluar dari sistem">↪</button></form></div>
+    <div class="sidebar-bottom"><div class="secure-dot"></div><div><b>Mode prototipe lokal</b><span>Data untuk evaluasi internal</span></div></div>
+  </aside>
+  <main class="main-area">
+    <header class="topbar"><button class="mobile-menu" id="menuToggle" aria-label="Buka menu">☰</button><div class="crumb">Kantor Pertanahan <span>/</span> <b>{% block crumb %}Dashboard{% endblock %}</b></div><div class="top-right"><span class="live-dot"></span><span>Data snapshot · {{ data_date_short }}</span><div class="avatar">{{ (session.get('username', 'U')[:2] or 'U')|upper }}</div></div></header>
+    <div class="page-content">
+      {% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flash-stack">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}
+      {% block content %}{% endblock %}
+      <footer class="footer"><span>SPK LINTOR · Prototipe akademik</span><span>Untuk mendukung monitoring berbasis data · Bukan aplikasi resmi ATR/BPN</span></footer>
+    </div>
+  </main>
+</div>
+{% block scripts %}{% endblock %}
+</body></html>

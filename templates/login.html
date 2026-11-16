@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masuk · SPK LINTOR</title><link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"></head>
+<body class="login-body"><main class="login-shell">
+<section class="login-brand-panel"><div class="login-brand"><div class="brand-mark">BPN</div><div><strong>SPK LINTOR</strong><span>Kantor Pertanahan Kabupaten Indramayu</span></div></div>
+<div class="login-illustration"><div class="login-ring ring-a"></div><div class="login-ring ring-b"></div><div class="login-paper"><div class="login-seal">✦</div><div class="paper-line long"></div><div class="paper-line"></div><div class="paper-line short"></div><div class="paper-stamp">LINTOR<br><small>2026</small></div></div><div class="login-float">✓ &nbsp; Monitoring berbasis data</div></div>
+<div class="login-brand-copy"><span class="login-eyebrow">SISTEM PENDUKUNG KEPUTUSAN</span><h1>Progres terpantau.<br><em>Prioritas lebih terarah.</em></h1><p>Platform prototipe untuk membantu analisis progres dan prioritas monitoring LINTOR.</p></div>
+<div class="login-footer-note">PROTOTIPE AKADEMIK · BUKAN APLIKASI RESMI ATR/BPN</div></section>
+<section class="login-form-panel"><div class="login-form-wrap"><div class="login-mobile-brand"><div class="brand-mark">BPN</div><div><strong>SPK LINTOR</strong><span>Kantah Kabupaten Indramayu</span></div></div>
+<div class="login-welcome"><div class="login-lock">⌑</div><span class="login-eyebrow red-eyebrow">SELAMAT DATANG</span><h2>Masuk ke sistem</h2><p>Masukkan akun untuk melanjutkan ke dashboard monitoring.</p></div>
+{% with messages = get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flash-stack">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}{% endwith %}
+<form method="post" class="login-form" autocomplete="on"><label for="username">Nama pengguna</label><div class="login-input-wrap"><span>♙</span><input id="username" name="username" type="text" placeholder="Masukkan nama pengguna" autocomplete="username" required autofocus></div><label for="password">Kata sandi</label><div class="login-input-wrap"><span>♧</span><input id="password" name="password" type="password" placeholder="Masukkan kata sandi" autocomplete="current-password" required><button type="button" class="show-password" id="togglePassword" aria-label="Tampilkan kata sandi">Lihat</button></div><button class="btn btn-primary login-submit" type="submit">Masuk ke dashboard <span>→</span></button></form>
+<div class="login-security"><span>●</span><div><b>Sesi terlindungi</b><p>Sesi akan berakhir setelah 8 jam. Keluar dari sistem setelah selesai menggunakan aplikasi.</p></div></div>
+<div class="login-demo"><b>Akun demo lokal</b><span>Username: <code>admin</code></span><span>Password: <code>Lintor@2026</code></span><small>Ganti kredensial demo sebelum aplikasi digunakan bersama atau dipasang di jaringan.</small></div>
+</div><div class="login-copyright">© 2026 · SPK LINTOR · Prototipe akademik</div></section></main>
+<script>const toggle=document.getElementById('togglePassword');const password=document.getElementById('password');toggle.addEventListener('click',()=>{const show=password.type==='password';password.type=show?'text':'password';toggle.textContent=show?'Sembunyi':'Lihat';toggle.setAttribute('aria-label',show?'Sembunyikan kata sandi':'Tampilkan kata sandi');});</script>
+</body></html>
